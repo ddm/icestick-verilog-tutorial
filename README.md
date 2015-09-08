@@ -2,7 +2,7 @@
 
 ## Simulation
 
-  > simulate.sh
+    > simulate.sh
 
 Run `test_bench.v` against `rotate_leds.v` using [Icarus Verilog](http://iverilog.icarus.com/).
 
@@ -10,7 +10,7 @@ Run `test_bench.v` against `rotate_leds.v` using [Icarus Verilog](http://iverilo
 
 ## Flash to iCEstick
 
-  > upload.sh
+    > upload.sh
 
 ## Credits
 Rotating LEDs Verilog example stolen from [the arachne-pnr project](https://github.com/cseed/arachne-pnr/tree/master/examples/rot).
