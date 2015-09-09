@@ -24,4 +24,4 @@ Run `test_bench.v` against `rotate_leds.v` using Icarus Verilog.
 ## Credits
 Rotating LEDs Verilog example stolen from [the arachne-pnr project](https://github.com/cseed/arachne-pnr/tree/master/examples/rot).
 
-
+Pin definitions stolen from [Al Williams](https://github.com/wd5gnr/icestick/blob/master/icestickfull.pcf).
