@@ -6,10 +6,10 @@ clean:
 update:
 	docker pull dimdm/icetools
 
-blif:
+blif: rotate.v
 	docker run -v `pwd`:/tmp/ dimdm/icetools yosys -p "synth_ice40 -blif rotate.blif" rotate.v
 
-txt: rotate.blif
+txt: rotate.blif leds.pcf
 	docker run -v `pwd`:/tmp/ dimdm/icetools arachne-pnr -d 1k -p leds.pcf rotate.blif -o rotate.txt
 
 bin: rotate.txt
