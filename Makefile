@@ -1,4 +1,7 @@
-default: blif txt bin
+default: clean blif txt bin
+
+clean:
+	cat .gitignore  | xargs -t -I {} rm -f {}
 
 blif:
 	docker run -v `pwd`:/tmp/ dimdm/icetools yosys -p "synth_ice40 -blif rotate.blif" rotate.v

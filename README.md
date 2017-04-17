@@ -10,7 +10,7 @@
 make
 ```
 
-# Simulate
+## Simulate
 
 ```
 make test
