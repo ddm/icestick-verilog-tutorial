@@ -2,7 +2,9 @@
 
 ## Prerequisite
 
-[Docker](https://www.docker.com/community-edition#/download)
+- [Docker](https://www.docker.com/community-edition#/download)
+
+- [Make](https://www.gnu.org/software/make/)
 
 ## Build
 
@@ -14,12 +16,6 @@ make
 
 ```
 make test
-```
-
-## Update
-
-```
-make update
 ```
 
 ## Credits
