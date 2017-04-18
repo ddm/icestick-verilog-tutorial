@@ -1,19 +1,18 @@
-default: clean update blif txt bin
+DOCKER_RUN := docker run -v ${CURDIR}:/tmp/ dimdm/icetools
+
+default: clean blif txt bin
 
 clean:
-	cat .gitignore  | xargs -t -I {} rm -f {}
-
-update:
-	docker pull dimdm/icetools
+	$(DOCKER_RUN) rm -f rotate.{bin,txt,blif} a.out
 
 blif: rotate.v
-	docker run -v `pwd`:/tmp/ dimdm/icetools yosys -p "synth_ice40 -blif rotate.blif" rotate.v
+	$(DOCKER_RUN) yosys -p "synth_ice40 -blif rotate.blif" rotate.v
 
 txt: rotate.blif leds.pcf
-	docker run -v `pwd`:/tmp/ dimdm/icetools arachne-pnr -d 1k -p leds.pcf rotate.blif -o rotate.txt
+	$(DOCKER_RUN) arachne-pnr -d 1k -p leds.pcf rotate.blif -o rotate.txt
 
 bin: rotate.txt
-	docker run -v `pwd`:/tmp/ dimdm/icetools icepack rotate.txt rotate.bin
+	$(DOCKER_RUN) icepack rotate.txt rotate.bin
 
 test: rotate.v test.v
-	docker run -v `pwd`:/tmp/ dimdm/icetools iverilog rotate.v test.v && vvp a.out
+	$(DOCKER_RUN) iverilog rotate.v test.v && vvp a.out
