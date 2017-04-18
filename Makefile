@@ -1,18 +1,18 @@
-DOCKER_RUN := docker run -v ${CURDIR}:/tmp/ dimdm/icetools
+RUN := docker run -v ${CURDIR}:/tmp/ dimdm/icetools
 
-default: clean blif txt bin
+default: clean synthesis place_and_route bitstream
 
 clean:
-	$(DOCKER_RUN) rm -f rotate.{bin,txt,blif} a.out
+	$(RUN) rm -f rotate.{bin,txt,blif} a.out
 
-blif: rotate.v
-	$(DOCKER_RUN) yosys -p "synth_ice40 -blif rotate.blif" rotate.v
+synthesis: rotate.v
+	$(RUN) yosys -p "synth_ice40 -blif rotate.blif" rotate.v
 
-txt: rotate.blif leds.pcf
-	$(DOCKER_RUN) arachne-pnr -d 1k -p leds.pcf rotate.blif -o rotate.txt
+place_and_route: rotate.blif pins.pcf
+	$(RUN) arachne-pnr -d 1k -p pins.pcf rotate.blif -o rotate.txt
 
-bin: rotate.txt
-	$(DOCKER_RUN) icepack rotate.txt rotate.bin
+bitstream: rotate.txt
+	$(RUN) icepack rotate.txt rotate.bin
 
-test: rotate.v test.v
-	$(DOCKER_RUN) iverilog rotate.v test.v && vvp a.out
+simulation: rotate.v test.v
+	$(RUN) iverilog rotate.v test.v && vvp a.out

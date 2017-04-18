@@ -1,10 +1,8 @@
 # iCEstick Verilog Tutorial
 
-## Prerequisite
+## Prerequisites
 
-- [Docker](https://www.docker.com/community-edition#/download)
-
-- [Make](https://www.gnu.org/software/make/)
+[Make](https://www.gnu.org/software/make/) && [Docker](https://www.docker.com/community-edition#/download)
 
 ## Build
 
@@ -15,7 +13,7 @@ make
 ## Simulate
 
 ```
-make test
+make simulation
 ```
 
 ## Credits
