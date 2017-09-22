@@ -15,4 +15,4 @@ bitstream: rotate.txt
 	$(RUN) icepack rotate.txt rotate.bin
 
 simulation: rotate.v test.v
-	$(RUN) iverilog rotate.v test.v && vvp a.out
+	$(RUN) echo "Type 'finish' after CTRL-C" && iverilog rotate.v test.v && vvp a.out
