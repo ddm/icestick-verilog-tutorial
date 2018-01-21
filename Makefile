@@ -1,4 +1,4 @@
-RUN := docker run -v ${CURDIR}:/tmp/ dimdm/icetools
+RUN := docker run -v ${CURDIR}:/workdir openfpga/toolchain
 
 default: clean synthesis place_and_route bitstream
 
